@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل البروفيل | HRFA.MA</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <div id="sidebar-placeholder"></div>
+    <div id="bottom-nav-placeholder"></div>
+
+    <main class="main-content" style="padding-top: 120px; padding-bottom: 100px;">
+        <div class="container" style="max-width: 1000px;">
+            <!-- Simple Back Link -->
+            <a href="artisan-dashboard.html" class="btn-text"
+                style="display: flex; align-items: center; gap: 8px; margin-bottom: 40px; color: var(--color-primary); font-weight: 800; text-decoration: underline;">
+                <i class="fas fa-arrow-right"></i> <span data-i18n="back_to_dashboard">رجوع للوحة التحكم</span>
+            </a>
+
+            <header class="page-header-premium" style="margin-bottom: 60px;">
+                <h1 data-i18n="edit_profile"
+                    style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; color: var(--color-primary);">
+                    إعدادات
+                    الحساب</h1>
+                <p style="color: var(--color-slate); font-size: 1.2rem; font-weight: 800;">تحكم في المعلومات ديالك وبان
+                    بأحسن صورة قدام
+                    الكليان.</p>
+            </header>
+
+            <form id="edit-profile-form" class="edit-form-layout fade-in">
+                <!-- Column 1: Avatar & Status -->
+                <aside class="edit-sidebar">
+                    <div
+                        style="background: var(--color-white); border: 4px solid var(--color-primary); border-radius: 0; padding: 35px; text-align: center; margin-bottom: 25px;">
+                        <div class="profile-edit-avatar-wrapper">
+                            <div class="profile-edit-avatar" id="avatar-container"
+                                style="width: 150px; height: 150px; margin: 0 auto 25px; font-size: 3.5rem; background: var(--color-accent); border: 4px solid var(--color-primary); color: white; border-radius: 0; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                                <span>SP</span>
+                                <div class="edit-overlay"
+                                    style="position: absolute; bottom: 0; right: 0; background: var(--color-primary); color: var(--color-bg); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                            </div>
+                            <h3
+                                style="margin-bottom: 8px; color: var(--color-primary); font-weight: 800; font-size: 1.5rem;">
+                                سعيد الصباغ</h3>
+                            <p style="font-size: 1.1rem; color: var(--color-accent); font-weight: 800;"
+                                data-i18n="cat_painter">صباغ محترف
+                            </p>
+                        </div>
+
+                        <div class="availability-premium-box"
+                            style="margin-top: 35px; padding-top: 25px; border-top: 4px solid var(--color-primary);">
+                            <label class="premium-switch"
+                                style="display: flex; align-items: center; gap: 15px; cursor: pointer;">
+                                <div style="text-align: right; flex: 1;">
+                                    <span data-i18n="availability"
+                                        style="font-weight: 800; display: block; color: var(--color-primary); font-size: 1.1rem;">متاح
+                                        للعمل</span>
+                                    <small
+                                        style="color: var(--color-slate); font-weight: 800; font-size: 0.85rem;">تواصل
+                                        مباشر مع الكليان</small>
+                                </div>
+                                <input type="checkbox" checked id="availability-toggle">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div
+                        style="background: white; border: 4px solid var(--color-primary); border-radius: 0; padding: 20px;">
+                        <button type="button" class="btn btn-outline"
+                            style="width: 100%; justify-content: flex-start; gap: 15px; border: 2px solid var(--color-primary); background: var(--color-white); margin-bottom: 12px; padding: 15px; border-radius: 0; color: var(--color-primary); font-weight: 800;"
+                            onclick="window.location.href='portfolio-management.html'">
+                            <i class="fas fa-images" style="color: var(--color-accent); font-size: 1.2rem;"></i> <span
+                                data-i18n="manage_portfolio">معرض الأعمال</span>
+                        </button>
+                        <button type="button" class="btn btn-outline"
+                            style="width: 100%; justify-content: flex-start; gap: 15px; border: 2px solid var(--color-primary); background: var(--color-white); padding: 15px; border-radius: 0; color: var(--color-primary); font-weight: 800;"
+                            onclick="window.location.href='profile.html?id=1'">
+                            <i class="fas fa-eye" style="color: var(--color-accent); font-size: 1.2rem;"></i>
+                            <span>معاينة البروفيل</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Column 2: Form Fields -->
+                <div class="edit-main-fields">
+                    <div
+                        style="background: var(--color-white); border: 4px solid var(--color-primary); border-radius: 0; padding: 50px; display: flex; flex-direction: column; align-items: stretch;">
+                        <h4
+                            style="margin-bottom: 35px; color: var(--color-primary); border-bottom: 4px solid var(--color-primary); padding-bottom: 20px; font-weight: 800; font-size: 1.8rem;">
+                            المعلومات الأساسية</h4>
+                        <div class="auth-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                            <div class="auth-form-group" style="grid-column: span 2;">
+                                <label data-i18n="full_name"
+                                    style="color: var(--color-primary); display: block; margin-bottom: 12px; font-weight: 800; font-size: 1.1rem;">الإسم
+                                    الكامل</label>
+                                <input type="text" class="auth-input-premium" value="سعيد الصباغ" required
+                                    style="width: 100%; border: 2px solid var(--color-primary); border-radius: 0; padding: 15px; font-weight: 800; color: var(--color-dark); font-size: 1.1rem;">
+                            </div>
+
+                            <div class="auth-form-group">
+                                <label data-i18n="phone_number"
+                                    style="color: var(--color-primary); display: block; margin-bottom: 12px; font-weight: 800; font-size: 1.1rem;">رقم
+                                    الهاتف</label>
+                                <input type="tel" class="auth-input-premium" value="0612345678" placeholder="06XXXXXXXX"
+                                    required
+                                    style="width: 100%; border: 2px solid var(--color-primary); border-radius: 0; padding: 15px; font-weight: 800; color: var(--color-dark); font-size: 1.1rem;">
+                            </div>
+
+                            <div class="auth-form-group">
+                                <label data-i18n="city"
+                                    style="color: var(--color-primary); display: block; margin-bottom: 12px; font-weight: 800; font-size: 1.1rem;">المدينة</label>
+                                <select class="auth-input-premium" id="city-select"
+                                    style="width: 100%; border: 2px solid var(--color-primary); border-radius: 0; padding: 15px; font-weight: 800; color: var(--color-dark); font-size: 1.1rem; background: var(--color-white);">
+                                    <option value="rabat" data-i18n="city_rabat">الرباط</option>
+                                    <option value="casablanca" data-i18n="city_casablanca">الدار البيضاء</option>
+                                    <option value="fes" data-i18n="city_fes">فاس</option>
+                                    <option value="marrakech" data-i18n="city_marrakech">مراكش</option>
+                                    <option value="tangier" data-i18n="city_tangier">طنجة</option>
+                                    <option value="sale" data-i18n="city_sale">سلا</option>
+                                    <option value="meknes" data-i18n="city_meknes">مكناس</option>
+                                    <option value="agadir" data-i18n="city_agadir">أكادير</option>
+                                    <option value="kenitra" data-i18n="city_kenitra">القنيطرة</option>
+                                    <option value="oujda" data-i18n="city_oujda">وجدة</option>
+                                    <option value="tetouan" data-i18n="city_tetouan">تطوان</option>
+                                    <option value="safi" data-i18n="city_safi">آسفي</option>
+                                </select>
+                            </div>
+
+                            <div class="auth-form-group" style="grid-column: span 2;">
+                                <label data-i18n="bio"
+                                    style="color: var(--color-primary); display: block; margin-bottom: 12px; font-weight: 800; font-size: 1.1rem;">نبذة
+                                    مهنية</label>
+                                <textarea class="auth-input-premium" id="artisan-bio"
+                                    style="height: 180px; resize: none; line-height: 1.6; width: 100%; border: 2px solid var(--color-primary); border-radius: 0; padding: 15px; font-weight: 800; color: var(--color-dark); font-size: 1.1rem;"
+                                    data-i18n-placeholder="bio_placeholder"
+                                    placeholder="هضر شوية على الخبرة ديالك والخدمات اللي كتقدم..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions-premium"
+                            style="margin-top: 50px; padding-top: 35px; border-top: 4px solid var(--color-primary); display: flex; justify-content: flex-end; gap: 20px;">
+                            <button type="button" class="btn btn-outline"
+                                style="padding: 15px 40px; border: 2px solid var(--color-primary); color: var(--color-primary); font-weight: 800; border-radius: 0; background: var(--color-white); font-size: 1.1rem;"
+                                onclick="window.location.href='artisan-dashboard.html'">إلغاء</button>
+                            <button type="submit" class="btn btn-accent"
+                                style="padding: 15px 50px; font-weight: 800; background: var(--color-accent); color: white; border: none; border-radius: 0; font-size: 1.1rem;">
+                                <i class="fas fa-check-circle"></i> <span data-i18n="save_changes">حفظ التغييرات</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/main.js"></script>
+    <script type="module">
+        import { showToast } from '../js/ui.js';
+
+        document.getElementById('edit-profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const saveBtn = e.target.querySelector('button[type="submit"]');
+            const originalHTML = saveBtn.innerHTML;
+
+            // Loading state
+            saveBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> جاري الحفظ...';
+            saveBtn.disabled = true;
+
+            setTimeout(() => {
+                showToast('تم حفظ التغييرات بنجاح!', 'success');
+                saveBtn.innerHTML = originalHTML;
+                saveBtn.disabled = false;
+
+                setTimeout(() => {
+                    window.location.href = 'artisan-dashboard.html';
+                }, 1000);
+            }, 1000);
+        });
+
+        // Availability toggle effect
+        document.getElementById('availability-toggle').addEventListener('change', function () {
+            const status = this.checked ? 'متاح للعمل دابا' : 'غير متاح حالياً';
+            showToast(`الحالة: ${status}`, this.checked ? 'success' : 'info');
+        });
+
+        // Avatar click simulation
+        document.getElementById('avatar-container').addEventListener('click', () => {
+            showToast('باش تبدل الصورة، اختار ملف من الجهاز ديالك', 'info');
+        });
+    </script>
+</body>
+
+</html>

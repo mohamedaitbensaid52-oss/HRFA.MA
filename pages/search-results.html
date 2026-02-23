@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRFA.MA - نتائج البحث</title>
+    <meta name="description" content="تصفح قائمة المهنيين والحرفيين المتاحين في مدينتك. سباكة، كهرباء، صباغة والمزيد.">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+    <meta name="theme-color" content="#06141B">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .cat-shortcut:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-accent) !important;
+            color: var(--color-accent) !important;
+        }
+
+        .artisan-list-item:hover {
+            background: var(--color-white) !important;
+            opacity: 0.9;
+            transform: translateX(-5px);
+            border-color: var(--color-accent) !important;
+        }
+
+        .view-toggles button.active {
+            box-shadow: inset 4px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-filter-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 100;
+        }
+
+        @media (max-width: 992px) {
+            .floating-filter-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <div id="sidebar-placeholder"></div>
+    <div id="bottom-nav-placeholder"></div>
+
+    <main class="main-content" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+            <!-- Premium Search Hero - Industrial Pro -->
+            <div class="search-hero-premium"
+                style="background: var(--color-primary); padding: 50px 30px; border: 4px solid var(--color-primary); position: relative; overflow: hidden; margin-bottom: 50px;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.05; background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');">
+                </div>
+
+                <div style="max-width: 850px; margin: 0 auto; position: relative; z-index: 2;">
+                    <div class="search-input-wrapper"
+                        style="display: flex; gap: 0; background: var(--color-white); border: 4px solid var(--color-accent); box-shadow: 10px 10px 0 rgba(0,0,0,0.1);">
+                        <div
+                            style="flex: 2; display: flex; align-items: center; padding: 0 20px; border-inline-end: 2px solid var(--color-primary);">
+                            <i class="fas fa-screwdriver-wrench"
+                                style="color: var(--color-primary); font-size: 1.2rem;"></i>
+                            <input type="text" id="artisan-search-main" data-i18n-placeholder="search_placeholder"
+                                placeholder="شنو هي الخدمة اللي كتقلب عليها؟"
+                                style="border: none; padding: 18px; width: 100%; font-weight: 800; color: var(--color-dark); outline: none;">
+                        </div>
+                        <button class="btn btn-accent" id="search-btn-trigger"
+                            style="padding: 0 40px; border: none; border-radius: 0; background: var(--color-accent); color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+                            <span data-i18n="search_submit">بحث</span> <i class="fas fa-arrow-left"
+                                style="margin-inline-start: 10px;"></i>
+                        </button>
+                    </div>
+
+                    <div class="category-shortcuts"
+                        style="margin-top: 25px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                        <span
+                            style="color: var(--color-bg); opacity: 0.7; font-weight: 800; font-size: 0.9rem; align-self: center;"
+                            data-i18n="search_example">مثلاً:</span>
+                        <a href="?cat=plumbing" class="cat-shortcut"
+                            style="color: var(--color-bg); border: 2px solid var(--color-bg); opacity: 0.8; padding: 5px 15px; text-decoration: none; font-size: 0.85rem; font-weight: 800; transition: 0.2s;"
+                            data-i18n="cat_plumbing">رصيص</a>
+                        <a href="?cat=electrician" class="cat-shortcut"
+                            style="color: var(--color-bg); border: 2px solid var(--color-bg); opacity: 0.8; padding: 5px 15px; text-decoration: none; font-size: 0.85rem; font-weight: 800; transition: 0.2s;"
+                            data-i18n="cat_electrician">كهربائي</a>
+                        <a href="?cat=painter" class="cat-shortcut"
+                            style="color: var(--color-bg); border: 2px solid var(--color-bg); opacity: 0.8; padding: 5px 15px; text-decoration: none; font-size: 0.85rem; font-weight: 800; transition: 0.2s;"
+                            data-i18n="cat_painter">صباغ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-results-layout">
+                <!-- Sidebar Filters - Flat -->
+                <aside class="filter-sidebar" id="filter-sidebar"
+                    style="background: var(--color-white); border: 2px solid var(--color-primary); padding: 25px; border-radius: 0;">
+                    <div class="filter-header-mobile">
+                        <h3 data-i18n="filter_title" style="font-weight: 800; color: var(--color-primary);">الفلاتر</h3>
+                        <button class="close-filters" id="close-filters-btn" style="color: var(--color-primary);"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <h3 data-i18n="filter_title"
+                                style="font-size: 1.2rem; margin: 0; color: var(--color-primary); font-weight: 800;">
+                                الفلاتر</h3>
+                            <button class="btn-text" id="reset-filters-btn"
+                                style="font-size: 0.9rem; color: var(--color-accent); font-weight: 800; text-decoration: underline;"
+                                data-i18n="reset_filters">إعادة
+                                ضبط</button>
+                        </div>
+
+                        <div class="filter-group" style="margin-bottom: 25px;">
+                            <label data-i18n="city_label"
+                                style="display: block; margin-bottom: 10px; font-weight: 800; color: var(--color-dark);">المدينة</label>
+                            <select id="city-filter-select" class="glass-input"
+                                style="width: 100%; padding: 12px; border: 2px solid var(--color-primary); border-radius: 0; background: var(--color-white); color: var(--color-dark); font-weight: 800;">
+                                <option value="" data-i18n="all_cities">كل المدن</option>
+                                <option value="rabat" data-i18n="city_rabat">الرباط</option>
+                                <option value="casablanca" data-i18n="city_casablanca">الدار البيضاء</option>
+                                <option value="fes" data-i18n="city_fes">فاس</option>
+                                <option value="marrakech" data-i18n="city_marrakech">مراكش</option>
+                                <option value="tangier" data-i18n="city_tangier">طنجة</option>
+                                <option value="sale" data-i18n="city_sale">سلا</option>
+                                <option value="meknes" data-i18n="city_meknes">مكناس</option>
+                                <option value="agadir" data-i18n="city_agadir">أكادير</option>
+                                <option value="kenitra" data-i18n="city_kenitra">القنيطرة</option>
+                                <option value="oujda" data-i18n="city_oujda">وجدة</option>
+                                <option value="tetouan" data-i18n="city_tetouan">تطوان</option>
+                                <option value="safi" data-i18n="city_safi">آسفي</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label data-i18n="sort_by"
+                                style="display: block; margin-bottom: 10px; font-weight: 800; color: var(--color-dark);">ترتيب
+                                حسب</label>
+                            <div class="sort-options" style="display: flex; gap: 10px;">
+                                <button class="btn-sort active" data-sort="rating"
+                                    style="flex: 1; padding: 10px; border: 2px solid var(--color-primary); background: var(--color-primary); color: var(--color-bg); font-weight: 800; cursor: pointer;">
+                                    <i class="fas fa-star" style="margin-inline-end: 8px;"></i> <span
+                                        data-i18n="rating">التقييم</span>
+                                </button>
+                                <button class="btn-sort" data-sort="price"
+                                    style="flex: 1; padding: 10px; border: 2px solid var(--color-primary); background: var(--color-white); color: var(--color-primary); font-weight: 800; cursor: pointer;">
+                                    <i class="fas fa-tag" style="margin-inline-end: 8px;"></i> <span
+                                        data-i18n="price_low">الأرخص</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Results Section -->
+                <div class="results-container">
+                    <div class="results-header-row"
+                        style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: 20px;">
+                        <div class="results-count">
+                            <h1 data-i18n="results_title"
+                                style="font-size: 1.8rem; margin: 0; color: var(--color-primary); font-weight: 800;">
+                                نتائج البحث</h1>
+                            <p style="color: var(--color-slate); font-size: 1rem; margin-top: 5px; font-weight: 800;">
+                                <span id="artisan-count-num">0</span> <span data-i18n="artisan_count">حرفي متاح</span>
+                            </p>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <div class="view-toggles" style="display: flex; border: 2px solid var(--color-primary);">
+                                <button id="grid-view-btn" class="active"
+                                    style="padding: 10px 15px; border: none; background: var(--color-primary); color: var(--color-bg); cursor: pointer;"
+                                    title="Grid View"><i class="fas fa-th-large"></i></button>
+                                <button id="list-view-btn"
+                                    style="padding: 10px 15px; border: none; background: var(--color-white); color: var(--color-primary); cursor: pointer;"
+                                    title="List View"><i class="fas fa-list"></i></button>
+                            </div>
+                            <button class="btn btn-outline mobile-filter-trigger" id="mobile-filter-btn"
+                                style="border: 2px solid var(--color-primary); color: var(--color-primary); font-weight: 800; padding: 8px 20px; border-radius: 0;">
+                                <i class="fas fa-sliders-h"></i> <span data-i18n="filter_title">الفلاتر</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Featured Artisans Section -->
+                    <div id="featured-results" style="margin-bottom: 40px; display: none;">
+                        <h4 style="color: var(--color-accent); font-weight: 800; margin-bottom: 15px;"><i
+                                class="fas fa-award"></i> <span data-i18n="featured_award">حرفيين مميزين بخبرة
+                                طويلة</span></h4>
+                        <div id="featured-grid" class="artisan-grid"></div>
+                    </div>
+
+                    <div class="artisan-grid" id="search-results-grid">
+                        <!-- Artisans will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Mobile Filter Btn -->
+    <button class="floating-filter-btn" id="floating-mobile-filter">
+        <i class="fas fa-filter"></i>
+    </button>
+
+    <!-- JS Files -->
+    <script src="../js/i18n.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/ui.js"></script>
+    <script type="module">
+        import { renderArtisans, setLoading } from '../js/ui.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get('cat');
+            const cityParam = params.get('city');
+            const queryParam = params.get('q');
+
+            const grid = document.getElementById('search-results-grid');
+            const featuredGrid = document.getElementById('featured-grid');
+            const featuredSection = document.getElementById('featured-results');
+            const searchInput = document.getElementById('artisan-search-main');
+            const citySelect = document.getElementById('city-filter-select');
+            const artisanCount = document.getElementById('artisan-count-num');
+
+            let currentView = 'grid'; // 'grid' or 'list'
+
+            const mockArtisans = [
+                { id: 1, full_name: 'سعيد الصباغ', city: 'الرباط', cat: 'painter', rating: '5.0', reviews: 142, exp: '12 سنة', color: '00D1B2', featured: true },
+                { id: 2, full_name: 'أمين التريسيان', city: 'الرباط', cat: 'electrician', rating: '4.9', reviews: 89, exp: '8 سنوات', color: 'fbbf24', featured: true },
+                { id: 3, full_name: 'فاطمة النظافة', city: 'مراكش', cat: 'cleaner', rating: '4.8', reviews: 65, exp: '5 سنوات', color: 'ff4757' },
+                { id: 4, full_name: 'ياسين الرصايص', city: 'طنجة', cat: 'plumbing', rating: '4.7', reviews: 120, exp: '15 سنة', color: '38bdf8' },
+                { id: 5, full_name: 'حسن النجار', city: 'مراكش', cat: 'carpenter', rating: '4.9', reviews: 43, exp: '10 سنوات', color: 'a855f7' },
+                { id: 6, full_name: 'كريم الزليجي', city: 'أكادير', cat: 'tiler', rating: '4.6', reviews: 29, exp: '6 سنوات', color: 'ea580c' },
+                { id: 7, full_name: 'محمد الصباغ', city: 'الرباط', cat: 'painter', rating: '4.5', reviews: 18, exp: '3 سنوات', color: '0fb9b1' },
+                { id: 8, full_name: 'عزيز النجار', city: 'مراكش', cat: 'carpenter', rating: '4.8', reviews: 54, exp: '9 سنوات', color: '8854d0' },
+                { id: 9, full_name: 'ليلى تبريد', city: 'الرباط', cat: 'hvac', rating: '4.9', reviews: 72, exp: '7 سنوات', color: '06b6d4' },
+                { id: 10, full_name: 'عمر بناء', city: 'طنجة', cat: 'masonry', rating: '4.7', reviews: 31, exp: '4 سنوات', color: '94a3b8' },
+                { id: 11, full_name: 'خالد ألمنيوم', city: 'أكادير', cat: 'aluminum', rating: '4.6', reviews: 24, exp: '5 سنوات', color: 'adafa0' }
+            ];
+
+            const cityNames = {
+                rabat: 'الرباط',
+                marrakech: 'مراكش',
+                tangier: 'طنجة',
+                agadir: 'أكادير'
+            };
+
+            function filterArtisans() {
+                const query = searchInput.value.toLowerCase();
+                const city = citySelect.value;
+                const cityArabic = cityNames[city];
+
+                let filtered = mockArtisans.filter(a => {
+                    const matchesQuery = a.full_name.toLowerCase().includes(query) || (a.cat && a.cat.includes(query));
+                    const matchesCity = !city || a.city === cityArabic;
+                    const matchesCat = !category || a.cat === category;
+                    return matchesQuery && matchesCity && matchesCat;
+                });
+
+                const featured = filtered.filter(a => a.featured);
+                const regular = filtered.filter(a => !a.featured);
+
+                // Render with skeleton first for effect
+                if (window.showSkeleton) window.showSkeleton('search-results-grid', 'card', 3);
+
+                setTimeout(() => {
+                    if (currentView === 'list') {
+                        renderListView(filtered, 'search-results-grid');
+                        featuredSection.style.display = 'none';
+                    } else {
+                        renderArtisans(regular, 'search-results-grid');
+                        if (featured.length > 0) {
+                            featuredSection.style.display = 'block';
+                            renderArtisans(featured, 'featured-grid');
+                        } else {
+                            featuredSection.style.display = 'none';
+                        }
+                    }
+                    artisanCount.textContent = filtered.length;
+                    if (window.updateContent) window.updateContent();
+                }, 400);
+            }
+
+            function renderListView(artisans, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                const lang = document.documentElement.lang || 'ar';
+                const emptyMsg = translations[lang]?.empty_search || 'No artisans found.';
+                const chatText = translations[lang]?.chat_btn || 'Message';
+                const profileText = translations[lang]?.view_profile || 'Profile';
+                const expLabel = translations[lang]?.exp_label || 'Exp';
+
+                if (artisans.length === 0) {
+                    container.innerHTML = `<div style="padding: 100px; text-align: center; color: var(--color-slate); font-weight: 800;">${emptyMsg}</div>`;
+                    return;
+                }
+
+                container.innerHTML = artisans.map(art => `
+                    <div class="artisan-list-item" style="background: var(--color-white); border: 4px solid var(--color-primary); margin-bottom: 20px; padding: 25px; display: flex; align-items: center; gap: 30px; position: relative; transition: 0.2s;">
+                        <div style="width: 100px; height: 100px; border: 4px solid var(--color-primary); background: #${art.color}; color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; flex-shrink: 0;">
+                            ${art.full_name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div style="flex: 1;">
+                            <h3 style="margin-bottom: 5px; color: var(--color-primary); font-weight: 800; font-size: 1.4rem;">${art.full_name} ${art.featured ? '<i class="fas fa-check-circle" style="color: #3b82f6; font-size: 1rem;"></i>' : ''}</h3>
+                            <div style="display: flex; gap: 20px; color: var(--color-slate); font-weight: 800; font-size: 0.95rem;">
+                                <span><i class="fas fa-map-marker-alt"></i> ${art.city}</span>
+                                <span><i class="fas fa-briefcase"></i> ${art.exp} ${expLabel}</span>
+                                <span style="color: var(--color-accent);"><i class="fas fa-star"></i> ${art.rating} (${art.reviews})</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="chat.html?id=${art.id}" class="btn btn-primary" style="padding: 12px 25px;">${chatText}</a>
+                            <a href="profile.html?id=${art.id}" class="btn btn-outline" style="border: 2px solid var(--color-primary); padding: 12px 25px;">${profileText}</a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // View Toggles
+            document.getElementById('grid-view-btn').addEventListener('click', function () {
+                currentView = 'grid';
+                this.classList.add('active');
+                this.style.background = 'var(--color-primary)';
+                this.style.color = 'white';
+                document.getElementById('list-view-btn').classList.remove('active');
+                document.getElementById('list-view-btn').style.background = 'var(--color-white)';
+                document.getElementById('list-view-btn').style.color = 'var(--color-primary)';
+                filterArtisans();
+            });
+
+            document.getElementById('list-view-btn').addEventListener('click', function () {
+                currentView = 'list';
+                this.classList.add('active');
+                this.style.background = 'var(--color-primary)';
+                this.style.color = 'var(--color-bg)';
+                document.getElementById('grid-view-btn').classList.remove('active');
+                document.getElementById('grid-view-btn').style.background = 'var(--color-white)';
+                document.getElementById('grid-view-btn').style.color = 'var(--color-primary)';
+                filterArtisans();
+            });
+
+            // Events
+            searchInput.addEventListener('input', filterArtisans);
+            citySelect.addEventListener('change', filterArtisans);
+            document.getElementById('search-btn-trigger').addEventListener('click', filterArtisans);
+
+            document.getElementById('reset-filters-btn').addEventListener('click', () => {
+                searchInput.value = '';
+                citySelect.value = '';
+                filterArtisans();
+            });
+
+            // Mobile filters toggle
+            const sidebar = document.getElementById('filter-sidebar');
+            const openFilters = () => sidebar.classList.add('active');
+            const closeFilters = () => sidebar.classList.remove('active');
+
+            document.getElementById('mobile-filter-btn').addEventListener('click', openFilters);
+            document.getElementById('floating-mobile-filter').addEventListener('click', openFilters);
+            document.getElementById('close-filters-btn').addEventListener('click', closeFilters);
+
+            // Initial UI state
+            if (cityParam) citySelect.value = cityParam;
+            if (queryParam) searchInput.value = queryParam;
+            if (category) {
+                // This part was removed from the original instruction, but keeping it for context if needed.
+                // If category tags are to be displayed, the 'categoryTags' element needs to exist in HTML.
+                // For now, it's commented out as the instruction implies its removal.
+                // categoryTags.innerHTML = `
+                //     <span class="category-badge active">
+                //         <i class="fas fa-tools"></i> ${category.charAt(0).toUpperCase() + category.slice(1)}
+                //         <i class="fas fa-times close-cat" style="cursor: pointer; margin-right: 8px;"></i>
+                //     </span>
+                // `;
+            }
+
+            filterArtisans();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,8 +1,0 @@
-# Keep environment variables
-.env
-
-# Keep node_modules
-node_modules/
-
-# Keep logs
-*.log

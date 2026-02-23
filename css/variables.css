@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Color Palette - Bicolor Flat Design */
+    --color-bg: #FFFFFF;
+    --color-primary: #111827;
+    --color-primary-rgb: 17, 24, 39;
+    --color-secondary: #F97316;
+    --color-secondary-rgb: 249, 115, 22;
+    --color-accent: #F97316;
+    --color-accent-rgb: 249, 115, 22;
+    --color-brand-blue: #2563EB;
+    /* Indigo/Blue for trust */
+    --color-dark: #111827;
+    --color-slate: #4B5563;
+    --color-silver: #9CA3AF;
+    --color-white: #FFFFFF;
+
+    /* Semantic Colors */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+
+    /* Flat Design Tokens */
+    --flat-border: #E5E7EB;
+    --flat-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --flat-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Typography - Cairo for Arabic, Outfit for English */
+    --font-arabic: 'Cairo', sans-serif;
+    --font-english: 'Outfit', sans-serif;
+    --font-weight-bold: 800;
+
+    /* Spacing & Sizing */
+    --nav-height: 72px;
+    --sidebar-width: 280px;
+    --border-radius-xl: 0px;
+    /* Flat design often uses sharp or minimal corners */
+    --border-radius-lg: 4px;
+    --border-radius-md: 2px;
+    --transition-smooth: 0.2s ease-in-out;
+    --section-padding: 100px 0;
+}
+
+
+[lang="ar"] {
+    --font-main: var(--font-arabic);
+}
+
+[lang="en"] {
+    --font-main: var(--font-english);
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-dark);
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure cards and other elements also transition */
+.flat-card,
+.navbar,
+.sidebar,
+.main-footer,
+.btn,
+.role-card-glass,
+.input-group-premium {
+    transition: var(--transition-smooth), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
+}

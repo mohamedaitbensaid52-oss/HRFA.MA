@@ -1,0 +1,16 @@
+{
+  "name": "hrfa.ma - منصة الحرفيين بالمغرب",
+  "short_name": "hrfa.ma",
+  "description": "المنصة الأولى لربط الحرفيين المهنيين بالزبناء في جميع أنحاء المغرب.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#06141B",
+  "theme_color": "#06141B",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

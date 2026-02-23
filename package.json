@@ -1,27 +1,11 @@
 {
-  "name": "hrfa-ma",
-  "version": "1.0.0",
-  "description": "HRFA.MA - Artisan & Client Platform",
-  "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
-  "scripts": {
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
-  },
-  "keywords": [
-    "artisan",
-    "platform",
-    "bilingual",
-    "morocco"
-  ],
-  "author": "HRFA.MA",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  }
+    "name": "khidma-backend",
+    "version": "1.0.0",
+    "description": "Backend for hrfa.ma using Vercel Functions",
+    "main": "index.js",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.39.0",
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2"
+    }
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - HRFA.MA</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <div id="sidebar-placeholder"></div>
+
+    <main class="container" style="padding: 120px 20px 60px;">
+        <div class="flat-card"
+            style="padding: 60px; border: 2px solid var(--color-primary); background: var(--color-white);">
+            <h1 data-i18n="nav_contact" style="font-size: 3rem; margin-bottom: 30px; color: var(--color-primary);">اتصل
+                بنا</h1>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;" data-i18n="nav_contact_info">معلومات التواصل</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;"><i class="fas fa-envelope"
+                                style="color: var(--color-accent); margin-left: 10px;"></i> support@hrfa.ma</li>
+                        <li style="margin-bottom: 15px;"><i class="fas fa-phone"
+                                style="color: var(--color-accent); margin-left: 10px;"></i> +212 600 000 000</li>
+                        <li style="margin-bottom: 15px;"><a href="404.html"
+                                style="text-decoration: none; color: inherit;"><i class="fab fa-whatsapp"
+                                    style="color: #25D366; margin-left: 10px;"></i> <span
+                                    data-i18n="whatsapp_contact">تواصل عبر واتساب</span></a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;" data-i18n="nav_contact_msg">نحب نسمعو منك</h3>
+                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 15px;">
+                        <input type="text" data-i18n-placeholder="full_name" placeholder="الاسم الكامل" required
+                            style="border: 2px solid var(--color-primary); border-radius: 0;">
+                        <input type="email" data-i18n-placeholder="email_label" placeholder="البريد الإلكتروني" required
+                            style="border: 2px solid var(--color-primary); border-radius: 0;">
+                        <textarea data-i18n-placeholder="type_message" placeholder="رسالتك هنا..." rows="5" required
+                            style="border: 2px solid var(--color-primary); border-radius: 0; padding: 15px; font-family: inherit;"></textarea>
+                        <button type="submit" class="btn btn-primary" style="align-self: flex-start;"
+                            data-i18n="send">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/components.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module">
+        import { showToast } from '../js/ui.js';
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('auth_success', 'success');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
