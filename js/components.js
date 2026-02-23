@@ -42,44 +42,6 @@ function loadNavbar() {
     `;
 }
 
-function loadBottomNav() {
-    const placeholder = document.getElementById('bottom-nav-placeholder');
-    if (!placeholder) return;
-
-    const isSubPage = window.location.pathname.includes('/pages/');
-    const isVercel = window.location.hostname.includes('vercel.app');
-    const basePath = isSubPage ? '../' : './';
-    const homeLink = isVercel ? '/' : (isSubPage ? '../index.html' : 'index.html');
-
-    const currentPage = window.location.pathname;
-
-    placeholder.innerHTML = `
-        <div class="bottom-nav">
-            <a href="${homeLink}" class="nav-item ${currentPage.endsWith('index.html') || currentPage.endsWith('/') || (isVercel && currentPage === '/') ? 'active' : ''}">
-                <i class="fas fa-home"></i>
-                <span data-i18n="nav_home">الرئيسية</span>
-            </a>
-            <a href="${basePath}pages/client-dashboard.html" class="nav-item ${currentPage.includes('client-dashboard') ? 'active' : ''}">
-                <i class="fas fa-search"></i>
-                <span data-i18n="nav_search_short">قلب</span>
-            </a>
-            <a href="${basePath}pages/request-service.html" class="nav-item ${currentPage.includes('request-service') ? 'active' : ''}">
-                <i class="fas fa-plus-circle"></i>
-                <span data-i18n="nav_request_short">طلب</span>
-            </a>
-            <a href="${basePath}pages/jobs.html" class="nav-item ${currentPage.includes('jobs.html') ? 'active' : ''}">
-                <i class="fas fa-briefcase"></i>
-                <span data-i18n="jobs_title">طلباتي</span>
-            </a>
-            <a href="${basePath}pages/profile.html" class="nav-item ${currentPage.includes('profile') ? 'active' : ''}">
-                <i class="fas fa-user"></i>
-                <span data-i18n="nav_profile_short">بروفيل</span>
-            </a>
-        </div>
-    `;
-
-    if (window.updateContent) window.updateContent();
-}
 
 function loadSidebar() {
     const placeholder = document.getElementById('sidebar-placeholder');
@@ -227,12 +189,10 @@ window.showSkeleton = showSkeleton;
 window.handleFormValidation = handleFormValidation;
 window.loadNavbar = loadNavbar;
 window.loadSidebar = loadSidebar;
-window.loadBottomNav = loadBottomNav;
 window.loadFooter = loadFooter;
 
 document.addEventListener('DOMContentLoaded', () => {
 
     loadNavbar();
-    loadBottomNav();
     loadFooter();
 });
